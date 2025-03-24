@@ -61,7 +61,7 @@ const About = () => {
             Je suis actuellement en train d'approfondir mes connaissances en JavaScript et ses frameworks pour enrichir mes compétences.
           </p>
           <p className="text-gray-300 max-w-3xl mx-auto mb-8 text-lg">
-            Étudiant en BTS SIO SLAM, je suis à la recherche d'une alternance pour ma deuxième année, avec une expérience en développement web et une passion pour les technologies émergentes. Je m'intéresse particulièrement au développement full-stack et à l'amélioration continue de mes compétences.
+            Étudiant en BTS SIO SLAM, je suis à la recherche d'une alternance pour ma deuxième année, avec une expérience en développement web et une passion pour les technologies émergentes. 
           </p>
         </div>
 
