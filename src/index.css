@@ -1,0 +1,432 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #1a1c2e;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(217deg, rgba(74, 44, 76, 0.5), rgba(26, 28, 46, 0) 70%),
+      linear-gradient(127deg, rgba(26, 28, 46, 0.8), rgba(74, 44, 76, 0) 70%),
+      linear-gradient(336deg, rgba(74, 44, 76, 0.4), rgba(26, 28, 46, 0) 70%);
+    opacity: 0.8;
+    z-index: -1;
+  }
+
+  /* Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Gradients */
+  .gradient-purple {
+    @apply bg-gradient-to-r from-purple-500 to-pink-500;
+    background-size: 200% 200%;
+    animation: gradient 4s ease infinite;
+  }
+
+  .gradient-indigo {
+    @apply bg-gradient-to-r from-indigo-500 to-blue-500;
+    background-size: 200% 200%;
+    animation: gradient 4s ease infinite;
+  }
+
+  .gradient-pink {
+    @apply bg-gradient-to-r from-pink-500 to-rose-500;
+    background-size: 200% 200%;
+    animation: gradient 4s ease infinite;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 30%),
+      linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.02) 49%, rgba(255, 255, 255, 0.02) 51%, transparent 52%),
+      linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.02) 49%, rgba(255, 255, 255, 0.02) 51%, transparent 52%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 60px 60px, 60px 60px;
+    animation: float 15s ease-in-out infinite;
+    z-index: -1;
+    opacity: 0.3;
+  }
+}
+
+@layer components {
+  /* Card styles */
+  .card {
+    @apply bg-card backdrop-blur-xl border border-white/20 transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply transform -translate-y-1 bg-card-hover border-white/30 shadow-xl;
+  }
+
+  /* Project card styles */
+  .project-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl rounded-xl p-6;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    transform: translateZ(-1px);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px) rotateX(10deg) rotateY(5deg);
+    @apply shadow-2xl shadow-purple-500/20;
+  }
+
+  .project-card-content {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .project-card:hover .project-card-content {
+    transform: translateZ(30px);
+  }
+
+  /* Tech tags */
+  .tech-tag {
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .tech-tag::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .tech-tag:hover::before {
+    opacity: 1;
+  }
+
+  /* Links */
+  .project-link {
+    @apply flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+  }
+
+  .project-link:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .project-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .project-link:hover::before {
+    opacity: 1;
+  }
+
+  /* Scroll animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Skill card styles */
+  .skill-section {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6;
+  }
+
+  .skill-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .skill-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    @apply shadow-lg shadow-purple-500/20;
+  }
+
+  .skill-card .skill-icon {
+    @apply w-12 h-12 mx-auto mb-4;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
+  }
+
+  .skill-level {
+    @apply h-2 bg-white/10 rounded-full mt-2 overflow-hidden;
+  }
+
+  .skill-level-fill {
+    height: 100%;
+    transition: width 1s ease-out;
+  }
+
+  /* Learning skills section */
+  .learning-section {
+    @apply grid grid-cols-2 md:grid-cols-4 gap-6;
+  }
+
+  .learning-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .learning-card:hover {
+    transform: translateY(-5px) rotateX(10deg);
+    @apply shadow-lg shadow-indigo-500/20;
+  }
+
+  .learning-icon {
+    @apply w-12 h-12 mx-auto relative;
+  }
+
+  .learning-pulse {
+    @apply absolute -top-1 -right-1 flex h-3 w-3;
+  }
+
+  /* Timeline section */
+  .timeline-section {
+    @apply space-y-6 relative;
+  }
+
+  .timeline-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-6;
+    transform-style: preserve-3d;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .timeline-card:hover {
+    transform: scale(1.02);
+    @apply shadow-lg shadow-pink-500/20;
+  }
+
+  .timeline-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  /* Contact section */
+  .contact-section {
+    @apply max-w-2xl mx-auto;
+  }
+
+  .contact-form {
+    @apply space-y-6;
+  }
+
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .form-input {
+    @apply w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50;
+    transition: all 0.3s ease;
+  }
+
+  .form-input:focus {
+    @apply outline-none border-purple-500 bg-white/10 shadow-lg shadow-purple-500/20;
+  }
+
+  .form-textarea {
+    @apply form-input h-32 resize-none;
+  }
+
+  .submit-button {
+    @apply w-full py-3 px-6 rounded-lg font-medium transition-all duration-300;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .submit-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, #8b5cf6, #6366f1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .submit-button:hover::before {
+    opacity: 1;
+  }
+
+  .submit-button:hover {
+    transform: translateY(-2px);
+    @apply shadow-lg shadow-purple-500/30;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply font-bold;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient 4s ease infinite;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500;
+    animation: gradient 3s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  /* Button styles */
+  .button-primary {
+    @apply bg-gradient-to-r from-purple-600 to-purple-500 text-white px-8 py-3 rounded-lg transition-all duration-300;
+  }
+
+  .button-primary:hover {
+    @apply transform -translate-y-1 shadow-lg shadow-purple-500/30;
+  }
+
+  .button-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+
+  .button-primary:hover::before {
+    left: 100%;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-purple {
+    @apply bg-gradient-to-r from-purple-600 to-purple-500;
+  }
+
+  .gradient-indigo {
+    @apply bg-gradient-to-r from-indigo-600 to-indigo-500;
+  }
+
+  .gradient-pink {
+    @apply bg-gradient-to-r from-pink-600 to-pink-500;
+  }
+
+  /* Section styles */
+  .section {
+    @apply py-24 relative overflow-hidden;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+  }
+
+  .about-section {
+    @apply relative z-10;
+  }
+
+  .about-section p {
+    @apply leading-relaxed;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-white/10;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-white/40;
+  }
+}
