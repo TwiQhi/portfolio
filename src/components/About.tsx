@@ -56,12 +56,7 @@ const About = () => {
             <span className="gradient-text">À Propos de Moi</span>
           </h2>
           <p className="text-gray-300 max-w-3xl mx-auto mb-8 text-lg">
-            Développeur web passionné, je suis spécialisé dans la création d'applications web modernes et intuitives.
-            Mon parcours m'a permis d'acquérir une solide expertise en PHP et dans les technologies front-end comme HTML/CSS et les frameworks CSS modernes.
-            Je suis actuellement en train d'approfondir mes connaissances en JavaScript et ses frameworks pour enrichir mes compétences.
-          </p>
-          <p className="text-gray-300 max-w-3xl mx-auto mb-8 text-lg">
-            Étudiant en BTS SIO SLAM, je suis à la recherche d'une alternance pour ma deuxième année, avec une expérience en développement web et une passion pour les technologies émergentes. 
+            Étudiant en BTS SIO SLAM, je suis à la recherche d'une alternance pour ma deuxième année, avec une expérience en développement web et une passion pour les technologies émergentes. Je m'intéresse particulièrement au développement full-stack et à l'amélioration continue de mes compétences. 
           </p>
         </div>
 
