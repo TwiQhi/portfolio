@@ -69,23 +69,15 @@ const About = () => {
           </p>
         </div>
 
-        <div className="skill-section">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {skills.map((skill, index) => (
             <div
               key={index}
               ref={el => skillRefs.current[index] = el}
-              className="skill-card fade-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="skill-card flex flex-col items-center justify-center p-4"
             >
-              <img src={skill.icon} alt={skill.name} className="skill-icon" />
-              <h3 className="text-xl font-semibold text-center mb-4">{skill.name}</h3>
-              <div className="skill-level">
-                <div
-                  className="skill-level-fill gradient-purple"
-                  style={{ width: `${skill.level}%` }}
-                />
-              </div>
-              <p className="text-center mt-2 text-sm text-gray-300">{skill.level}%</p>
+              <img src={skill.icon} alt={skill.name} className="w-12 h-12 mb-3" />
+              <h3 className="text-lg font-semibold text-center">{skill.name}</h3>
             </div>
           ))}
         </div>
